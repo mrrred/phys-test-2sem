@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тест на знание формул по физике</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Экран выбора количества вопросов -->
+        <div id="setup-screen" class="screen active">
+            <h1>Тест на знание формул по физике</h1>
+            <div class="form-group">
+                <label for="question-count">Количество вопросов (макс. <span id="max-questions">43</span>):</label>
+                <input type="number" id="question-count" min="1" max="43" value="10">
+            </div>
+            <button id="start-btn" class="btn">Начать тест</button>
+        </div>
+        
+        <!-- Экран тестирования -->
+        <div id="quiz-screen" class="screen">
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress" id="progress"></div>
+                </div>
+                <div class="progress-text" id="progress-text">Вопрос 1 из 10</div>
+            </div>
+            <h2 id="question-title"></h2>
+            <div id="options-container" class="options-grid"></div>
+            <button id="next-btn" class="btn" disabled>Следующий вопрос</button>
+        </div>
+        
+        <!-- Экран результатов -->
+        <div id="results-screen" class="screen">
+            <h2>Результаты теста</h2>
+            <div class="score-container">
+                <div class="score-circle">
+                    <span id="score-value">0</span>
+                    <span>из</span>
+                    <span id="total-questions">0</span>
+                </div>
+                <div id="score-percent">0%</div>
+            </div>
+            <div id="results-details"></div>
+            <button id="restart-btn" class="btn">Пройти тест снова</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false},
+                    {left: '\\(', right: '\\)', display: false},
+                    {left: '\\[', right: '\\]', display: true}
+                ],
+                throwOnError: false,
+                output: 'mathml'
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,217 @@
+[
+    {
+        "id": 1,
+        "title": "Закон сохранения заряда",
+        "formula": "q_1 + q_2 + \\dots + q_n = \\text{const}"
+    },
+    {
+        "id": 2,
+        "title": "Напряжённость электрического поля",
+        "formula": "E = k\\frac{|q|}{r^2} = \\frac{F}{q} = \\frac{U}{d}"
+    },
+    {
+        "id": 3,
+        "title": "Закон Кулона",
+        "formula": "F = k\\frac{|q_1||q_2|}{\\varepsilon r^2}"
+    },
+    {
+        "id": 4,
+        "title": "Принцип суперпозиции полей",
+        "formula": "\\vec{E} = \\vec{E_1} + \\vec{E_2} + \\dots + \\vec{E_n}"
+    },
+    {
+        "id": 5,
+        "title": "Поток вектора напряжённости",
+        "formula": "\\Phi = \\oint \\vec{E} \\cdot d\\vec{S}"
+    },
+    {
+        "id": 6,
+        "title": "Теорема Гаусса",
+        "formula": "\\Phi = \\frac{q_1 + q_2 + \\dots + q_n}{\\varepsilon \\varepsilon_0}"
+    },
+    {
+        "id": 7,
+        "title": "Линейная плотность заряда",
+        "formula": "\\lambda = \\frac{dq}{dl}"
+    },
+    {
+        "id": 8,
+        "title": "Напряжённость равномерно заряженной плоскости",
+        "formula": "E = \\frac{\\sigma}{2\\varepsilon\\varepsilon_0}"
+    },
+    {
+        "id": 9,
+        "title": "Напряжённость бесконечно заряженной нити",
+        "formula": "E = \\frac{\\lambda}{2\\pi r \\varepsilon\\varepsilon_0}"
+    },
+    {
+        "id": 10,
+        "title": "Напряжённость равномерно заряженного шара",
+        "formula": "\\text{Внутри: } E = 0 \\quad \\text{Снаружи: } E = \\frac{q}{4\\pi r^2 \\varepsilon\\varepsilon_0}"
+    },
+    {
+        "id": 11,
+        "title": "Работа по перемещению заряда в поле",
+        "formula": "A = \\frac{Qq}{4\\pi\\varepsilon\\varepsilon_0} \\left( \\frac{1}{r_1} - \\frac{1}{r_2} \\right)"
+    },
+    {
+        "id": 12,
+        "title": "Потенциал электрического поля",
+        "formula": "\\varphi = \\frac{W_p}{q}"
+    },
+    {
+        "id": 13,
+        "title": "Напряжение",
+        "formula": "U = \\varphi_1 - \\varphi_2 = -\\Delta\\varphi"
+    },
+    {
+        "id": 14,
+        "title": "Работа электрического поля",
+        "formula": "A = qU"
+    },
+    {
+        "id": 15,
+        "title": "Дипольный момент",
+        "formula": "p = ql"
+    },
+    {
+        "id": 16,
+        "title": "Напряжённость поля точечного диполя",
+        "formula": "\\vec{E} = k \\left( \\frac{3(\\vec{p} \\cdot \\vec{r})\\vec{r}}{r^5} - \\frac{\\vec{p}}{r^3} \\right)"
+    },
+    {
+        "id": 17,
+        "title": "Потенциальная энергия диполя",
+        "formula": "W = -\\vec{p} \\cdot \\vec{E}"
+    },
+    {
+        "id": 18,
+        "title": "Сила взаимодействия диполей",
+        "formula": "F = -\\frac{dW}{dr}"
+    },
+    {
+        "id": 19,
+        "title": "Вектор поляризации",
+        "formula": "\\vec{P} = \\chi\\varepsilon_0\\vec{E} = \\lim_{\\Delta V \\to 0} \\frac{\\sum \\vec{p}_i}{\\Delta V}"
+    },
+    {
+        "id": 20,
+        "title": "Диэлектрическая восприимчивость",
+        "formula": "\\chi = \\varepsilon - 1"
+    },
+    {
+        "id": 21,
+        "title": "Вектор электрической индукции",
+        "formula": "\\vec{D} = \\varepsilon\\varepsilon_0\\vec{E}"
+    },
+    {
+        "id": 22,
+        "title": "Электроёмкость",
+        "formula": "C = \\frac{q}{\\varphi}"
+    },
+    {
+        "id": 23,
+        "title": "Электроёмкость плоского конденсатора",
+        "formula": "C = \\frac{\\varepsilon\\varepsilon_0 S}{d}"
+    },
+    {
+        "id": 24,
+        "title": "Электроёмкость между сферами",
+        "formula": "C = \\frac{4\\pi\\varepsilon\\varepsilon_0}{\\frac{1}{R_1} - \\frac{1}{R_2}}"
+    },
+    {
+        "id": 25,
+        "title": "Электроёмкость между цилиндрами",
+        "formula": "C = \\frac{2\\pi\\varepsilon\\varepsilon_0 l}{\\ln\\frac{R_2}{R_1}}"
+    },
+    {
+        "id": 26,
+        "title": "Электроёмкость уединённой сферы",
+        "formula": "C = 4\\pi\\varepsilon\\varepsilon_0 R"
+    },
+    {
+        "id": 27,
+        "title": "Энергия конденсатора",
+        "formula": "W = \\frac{CU^2}{2}"
+    },
+    {
+        "id": 28,
+        "title": "Сила тока",
+        "formula": "I = \\frac{dq}{dt}"
+    },
+    {
+        "id": 29,
+        "title": "Вектор плотности тока",
+        "formula": "\\vec{j} = \\frac{dI}{dS} = \\frac{\\vec{E}}{\\rho}"
+    },
+    {
+        "id": 30,
+        "title": "ЭДС",
+        "formula": "\\mathcal{E} = \\frac{A_{\\text{ст}}}{q}"
+    },
+    {
+        "id": 31,
+        "title": "Закон Ома",
+        "formula": "I = \\frac{U}{R}"
+    },
+    {
+        "id": 32,
+        "title": "Закон Ома для неоднородного участка цепи",
+        "formula": "I = \\frac{U_{12}}{R_{12}} = \\frac{\\varphi_1 - \\varphi_2 + \\mathcal{E}_{12}}{R_{12}}"
+    },
+    {
+        "id": 33,
+        "title": "Закон Ома для замкнутой цепи",
+        "formula": "I = \\frac{\\mathcal{E}}{R + r}"
+    },
+    {
+        "id": 34,
+        "title": "Работа тока",
+        "formula": "dA = dq \\cdot U = I \\cdot U \\cdot dt"
+    },
+    {
+        "id": 35,
+        "title": "Мощность тока",
+        "formula": "P = \\frac{dA}{dt} = I \\cdot U"
+    },
+    {
+        "id": 36,
+        "title": "Закон Джоуля-Ленца",
+        "formula": "dQ = dA = I \\cdot U \\cdot dt = j \\cdot E \\cdot dV \\cdot dt"
+    },
+    {
+        "id": 37,
+        "title": "Магнитный момент",
+        "formula": "p_m = I \\cdot S"
+    },
+    {
+        "id": 38,
+        "title": "Коэффициент пропорциональности",
+        "formula": "\\widetilde{k} = \\frac{\\mu \\mu_0}{4\\pi}"
+    },
+    {
+        "id": 39,
+        "title": "Магнитная индукция",
+        "formula": "d\\vec{B} = \\widetilde{k} \\frac{I (d\\vec{l} \\times \\vec{r})}{r^3}"
+    },
+    {
+        "id": 40,
+        "title": "Магнитная индукция конечного проводника",
+        "formula": "B = \\widetilde{k} \\frac{I}{b} (\\cos\\alpha_1 - \\cos\\alpha_2)"
+    },
+    {
+        "id": 41,
+        "title": "Магнитная индукция бесконечного проводника",
+        "formula": "B = 2\\widetilde{k} \\frac{I}{b}"
+    },
+    {
+        "id": 42,
+        "title": "Магнитная индукция кругового тока",
+        "formula": "B = \\mu \\mu_0 \\frac{I}{2R}"
+    },
+    {
+        "id": 43,
+        "title": "Сила Ампера",
+        "formula": "d\\vec{F} = I (d\\vec{l} \\times \\vec{B})"
+    }
+]
