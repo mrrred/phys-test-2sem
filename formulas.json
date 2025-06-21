@@ -232,7 +232,7 @@
     {
         "id": 47,
         "title": "Циркуляция магнитной индукции",
-        "formula": "\\oint \\vec{B} \\cdot d\\vec{l} = \\mu \\mu_0 I"
+        "formula": "Са = \\oint \\vec{B} \\cdot d\\vec{l} = \\mu \\mu_0 I"
     },
     {
         "id": 48,

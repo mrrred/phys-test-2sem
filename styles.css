@@ -283,3 +283,185 @@ input:focus {
         grid-template-columns: 1fr 1fr;
     }
 }
+
+/* Переключатель режимов */
+.mode-selector {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.mode-btn {
+    flex: 1;
+    padding: 12px;
+    background: #e0e0e0;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.mode-btn.active {
+    background: var(--primary);
+    color: white;
+}
+
+/* Контейнер для ввода формулы */
+.input-container {
+    margin-bottom: 25px;
+}
+
+.formula-input-wrapper {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+#formula-input {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-family: monospace;
+    transition: border-color 0.3s;
+}
+
+#formula-input:focus {
+    border-color: var(--primary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+#formula-preview {
+    min-height: 50px;
+    padding: 15px;
+    border: 2px solid #eee;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    text-align: center;
+    overflow-x: auto;
+}
+
+/* Виртуальная клавиатура */
+.virtual-keyboard {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.keyboard-key {
+    padding: 10px;
+    background: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.2s;
+    user-select: none;
+}
+
+.keyboard-key:hover {
+    background: #e0e0e0;
+}
+
+.keyboard-key:active {
+    background: #d0d0d0;
+}
+
+.keyboard-key.special {
+    background: #d6eaf8;
+    grid-column: span 2;
+}
+
+.keyboard-key.space {
+    grid-column: span 3;
+}
+
+.keyboard-row {
+    display: contents;
+}
+
+/* Для мобильных устройств */
+@media (max-width: 768px) {
+    .virtual-keyboard {
+        grid-template-columns: repeat(6, 1fr);
+    }
+    
+    .keyboard-key.special {
+        grid-column: span 3;
+    }
+    
+    .keyboard-key.space {
+        grid-column: span 4;
+    }
+}
+
+/* Обновленные стили для виртуальной клавиатуры */
+.virtual-keyboard {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 5px;
+    margin-bottom: 15px;
+}
+
+.keyboard-key {
+    padding: 8px 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+    font-size: 0.9rem;
+    font-weight: 600;
+    background: #f8f9fa;
+    user-select: none;
+}
+
+.keyboard-key:hover {
+    background: #e9ecef;
+    transform: translateY(-2px);
+}
+
+.keyboard-key:active {
+    background: #dee2e6;
+    transform: translateY(0);
+}
+
+.keyboard-key.group-header {
+    background: #e0e0e0;
+    font-weight: bold;
+    grid-column: span 6;
+    margin-bottom: 5px;
+    border-radius: 4px;
+}
+
+.keyboard-key.space {
+    grid-column: span 3;
+}
+
+/* Для мобильных устройств */
+@media (max-width: 768px) {
+    .virtual-keyboard {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 4px;
+    }
+    
+    .keyboard-key {
+        padding: 6px 3px;
+        font-size: 0.8rem;
+    }
+    
+    .keyboard-key.group-header {
+        grid-column: span 4;
+    }
+    
+    .keyboard-key.space {
+        grid-column: span 2;
+    }
+}

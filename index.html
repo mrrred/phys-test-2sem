@@ -11,13 +11,23 @@
 </head>
 <body>
     <div class="container">
-        <!-- Экран выбора количества вопросов -->
+        <!-- Экран выбора режима и количества вопросов -->
         <div id="setup-screen" class="screen active">
             <h1>Тест на знание формул по физике</h1>
+            
+            <div class="form-group">
+                <label>Режим тестирования:</label>
+                <div class="mode-selector">
+                    <button id="easy-mode-btn" class="mode-btn active">Стандартный</button>
+                    <button id="hard-mode-btn" class="mode-btn">Сложный</button>
+                </div>
+            </div>
+            
             <div class="form-group">
                 <label for="question-count">Количество вопросов (макс. <span id="max-questions">53</span>):</label>
                 <input type="number" id="question-count" min="1" max="53" value="10">
             </div>
+            
             <button id="start-btn" class="btn">Начать тест</button>
         </div>
         
@@ -29,8 +39,26 @@
                 </div>
                 <div class="progress-text" id="progress-text">Вопрос 1 из 10</div>
             </div>
+            
             <h2 id="question-title"></h2>
+            
+            <!-- Контейнер для вариантов ответов (стандартный режим) -->
             <div id="options-container" class="options-grid"></div>
+            
+            <!-- Контейнер для ввода формулы (сложный режим) -->
+            <div id="input-container" class="input-container" style="display: none;">
+                <div class="formula-input-wrapper">
+                    <div id="formula-preview"></div>
+                    <input type="text" id="formula-input" autocomplete="off" placeholder="Введите формулу...">
+                </div>
+                
+                <div id="virtual-keyboard" class="virtual-keyboard">
+                    <!-- Группы клавиш будут сгенерированы в JS -->
+                </div>
+                
+                <button id="submit-answer" class="btn">Подтвердить ответ</button>
+            </div>
+            
             <button id="next-btn" class="btn" disabled>Следующий вопрос</button>
         </div>
         
@@ -60,8 +88,7 @@
                     {left: '\\(', right: '\\)', display: false},
                     {left: '\\[', right: '\\]', display: true}
                 ],
-                throwOnError: false,
-                output: 'mathml'
+                throwOnError: false
             });
         });
     </script>
