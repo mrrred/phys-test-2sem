@@ -196,12 +196,12 @@
     },
     {
         "id": 40,
-        "title": "Магнитная индукция конечного проводника",
+        "title": "Магнитная индукция для конечного проводника",
         "formula": "B = \\widetilde{k} \\frac{I}{b} (\\cos\\alpha_1 - \\cos\\alpha_2)"
     },
     {
         "id": 41,
-        "title": "Магнитная индукция бесконечного проводника",
+        "title": "Магнитная индукция для бесконечного проводника",
         "formula": "B = 2\\widetilde{k} \\frac{I}{b}"
     },
     {
@@ -213,5 +213,55 @@
         "id": 43,
         "title": "Сила Ампера",
         "formula": "d\\vec{F} = I (d\\vec{l} \\times \\vec{B})"
+    },
+    {
+        "id": 44,
+        "title": "Сила Лоренца",
+        "formula": "\\vec{F} = q\\vec{E} + q(\\vec{v} \\times \\vec{B})"
+    },
+    {
+        "id": 45,
+        "title": "Магнитный поток",
+        "formula": "d\\Phi = \\vec{B} \\cdot d\\vec{S}"
+    },
+    {
+        "id": 46,
+        "title": "Работа по перемещению проводника с током",
+        "formula": "dA = I d\\Phi"
+    },
+    {
+        "id": 47,
+        "title": "Циркуляция магнитной индукции",
+        "formula": "\\oint \\vec{B} \\cdot d\\vec{l} = \\mu \\mu_0 I"
+    },
+    {
+        "id": 48,
+        "title": "Магнитная индукция через напряжённость магнитного поля",
+        "formula": "\\vec{B} = \\mu \\mu_0 \\vec{H}"
+    },
+    {
+        "id": 49,
+        "title": "Вектор намагниченности",
+        "formula": "\\vec{J} = \\lim_{\\Delta V \\to 0} \\frac{\\sum \\vec{p}_{m_i}}{\\Delta V}"
+    },
+    {
+        "id": 50,
+        "title": "ЭДС магнитной индукции (Закон Фарадея)",
+        "formula": "\\mathcal{E} = -\\frac{d\\Phi}{dt}"
+    },
+    {
+        "id": 51,
+        "title": "Индуктивность",
+        "formula": "L = \\frac{\\Phi}{I}"
+    },
+    {
+        "id": 52,
+        "title": "ЭДС самоиндукции",
+        "formula": "\\mathcal{E} = -L \\frac{dI}{dt}"
+    },
+    {
+        "id": 53,
+        "title": "Магнитная энергия тока",
+        "formula": "W = \\frac{1}{2} L I^2"
     }
 ]
