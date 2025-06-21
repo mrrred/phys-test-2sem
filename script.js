@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentQuestionIndex = 0;
     let userAnswers = [];
     let score = 0;
-    let isHardMode = false;
+    let isHardMode = true;
     let history = [''];
     let historyIndex = 0;
 
