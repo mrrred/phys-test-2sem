@@ -23,37 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const easyModeBtn = document.getElementById('easy-mode-btn');
     const hardModeBtn = document.getElementById('hard-mode-btn');
 
-    const KEY_DISPLAY = {
-    '\\frac{}{}': 'Frac',
-    '\\vec{}': 'Vec',
-    '\\int': '∫',
-    '\\sum': '∑',
-    '\\lim': 'Lim',
-    '\\Delta': 'Δ',
-    '\\mathcal{E}': 'ℰ',
-    '\\widetilde{k}': 'k̃',
-    '\\cdot': '·',
-    '\\times': '×',
-    '\\infty': '∞',
-    '\\partial': '∂',
-    '\\text{Внутри: }': 'Внутри',
-    '\\text{Снаружи: }': 'Снаружи',
-    '\\alpha': 'α',
-    '\\beta': 'β',
-    '\\gamma': 'γ',
-    '\\delta': 'δ',
-    '\\varepsilon': 'ε',
-    '\\pi': 'π',
-    '\\sigma': 'σ',
-    '\\lambda': 'λ',
-    '\\varphi': 'φ',
-    '\\chi': 'χ',
-    '^{}': 'x²',
-    '_{}': 'x₀',
-    '^()': '▫ˣ',
-    '_()': '▫ᵢ'
-    };
-
     // Состояние приложения
     let formulas = [];
     let currentTest = [];
@@ -61,6 +30,43 @@ document.addEventListener('DOMContentLoaded', () => {
     let userAnswers = [];
     let score = 0;
     let isHardMode = false;
+    let history = [''];
+    let historyIndex = 0;
+
+    // Отображение символов для клавиатуры
+    const KEY_DISPLAY = {
+        '\\frac{}{}': 'Frac',
+        '\\vec{}': 'Vec',
+        '\\int': '∫',
+        '\\sum': '∑',
+        '\\lim': 'Lim',
+        '\\Delta': 'Δ',
+        '\\mathcal{E}': 'ℰ',
+        '\\widetilde{k}': 'k̃',
+        '\\cdot': '·',
+        '\\times': '×',
+        '\\infty': '∞',
+        '\\partial': '∂',
+        '\\text{Внутри: }': 'Внутри',
+        '\\text{Снаружи: }': 'Снаружи',
+        '\\alpha': 'α',
+        '\\beta': 'β',
+        '\\gamma': 'γ',
+        '\\delta': 'δ',
+        '\\varepsilon': 'ε',
+        '\\pi': 'π',
+        '\\sigma': 'σ',
+        '\\lambda': 'λ',
+        '\\varphi': 'φ',
+        '\\chi': 'χ',
+        '\\nu': 'ν',
+        '^{}': 'x²',
+        '_{}': 'x₀',
+        '\\sqrt{}': '√',
+        '\\widetilde{k}': 'k̃',
+        '\\ln': 'ln',
+        '\\log': 'log'
+    };
 
     // Загрузка формул из JSON
     async function loadFormulas() {
@@ -80,52 +86,35 @@ document.addEventListener('DOMContentLoaded', () => {
         const keyboard = document.getElementById('virtual-keyboard');
         keyboard.innerHTML = '';
         
-        // Более компактная группировка клавиш
         const keyGroups = [
             {
-                name: 'Основные',
-                keys: ['7', '8', '9', '4', '5', '6', '1', '2', '3', '0', '.', '=']
-            },
-            {
-                name: 'Операторы',
-                keys: ['+', '-', '*', '/', '(', ')', '[', ']', '{', '}']
-            },
-            {
-                name: 'Степени/Индексы',
-                keys: ['^{}', '_{}', '^()', '_()']
+                name: 'Матем.',
+                keys: ['\\frac{}{}', '^{}', '_{}', '\\sqrt{}', '\\pi', '\\infty', '\\ln', '\\log']
             },
             {
                 name: 'Греческие',
-                keys: ['\\alpha', '\\beta', '\\gamma', '\\delta', '\\varepsilon', '\\pi', '\\sigma', '\\lambda', '\\varphi', '\\chi']
+                keys: ['\\alpha', '\\beta', '\\gamma', '\\delta', '\\varepsilon', '\\pi', '\\sigma', '\\lambda', '\\varphi', '\\nu']
             },
             {
-                name: 'Спец.',
-                keys: ['\\frac{}{}', '\\vec{}', '\\int', '\\sum', '\\lim', '\\Delta', '\\mathcal{E}', '\\widetilde{k}']
-            },
-            {
-                name: 'Доп.',
-                keys: ['\\cdot', '\\times', '\\infty', '\\partial', '\\text{Внутри: }', '\\text{Снаружи: }']
+                name: 'Физика',
+                keys: ['\\vec{}', '\\Delta', '\\mathcal{E}', '\\cdot', '\\times', '\\partial', '\\widetilde{k}']
             }
         ];
         
         keyGroups.forEach(group => {
-            // Добавляем разделитель группы
             const groupHeader = document.createElement('div');
             groupHeader.className = 'keyboard-row';
             groupHeader.innerHTML = `<div class="keyboard-key group-header">${group.name}</div>`;
             keyboard.appendChild(groupHeader);
             
-            // Добавляем клавиши
             const row = document.createElement('div');
             row.className = 'keyboard-row';
             
             group.keys.forEach(key => {
                 const keyElement = document.createElement('div');
                 keyElement.className = 'keyboard-key';
-                
-                // Используем символьное отображение, если оно определено
                 keyElement.textContent = KEY_DISPLAY[key] || key;
-                keyElement.title = key; // Подсказка с LaTeX-кодом
+                keyElement.title = key;
                 
                 keyElement.addEventListener('click', () => {
                     insertSymbol(key);
@@ -137,7 +126,6 @@ document.addEventListener('DOMContentLoaded', () => {
             keyboard.appendChild(row);
         });
         
-        // Добавляем кнопки управления
         const controlRow = document.createElement('div');
         controlRow.className = 'keyboard-row';
         controlRow.innerHTML = `
@@ -148,46 +136,69 @@ document.addEventListener('DOMContentLoaded', () => {
         
         document.getElementById('backspace-key').addEventListener('click', () => {
             formulaInput.value = formulaInput.value.slice(0, -1);
+            saveToHistory(formulaInput.value);
             updateFormulaPreview();
         });
         
         document.getElementById('clear-key').addEventListener('click', () => {
             formulaInput.value = '';
+            saveToHistory('');
             updateFormulaPreview();
         });
     }
     
-    // Вставка символа в поле ввода
+    // Вставка символа
     function insertSymbol(symbol) {
-        const input = document.getElementById('formula-input');
-        const cursorPos = input.selectionStart;
+        const cursorPos = formulaInput.selectionStart;
+        const before = formulaInput.value.substring(0, cursorPos);
+        const after = formulaInput.value.substring(cursorPos);
         
-        // Вставка символа в текущую позицию курсора
-        input.value = input.value.substring(0, cursorPos) + symbol + input.value.substring(cursorPos);
+        // Обработка специальных символов с курсором
+        if (symbol === '^{}' || symbol === '_{}') {
+            formulaInput.value = before + symbol[0] + '{}' + after;
+            formulaInput.setSelectionRange(cursorPos + 2, cursorPos + 2);
+        } 
+        else if (symbol === '\\sqrt{}') {
+            formulaInput.value = before + '\\sqrt{}' + after;
+            formulaInput.setSelectionRange(cursorPos + 6, cursorPos + 6);
+        }
+        else {
+            formulaInput.value = before + symbol + after;
+            formulaInput.setSelectionRange(cursorPos + symbol.length, cursorPos + symbol.length);
+        }
         
-        // Перемещение курсора после вставленного символа
-        const newPos = cursorPos + symbol.length;
-        input.setSelectionRange(newPos, newPos);
-        
-        // Фокус на поле ввода
-        input.focus();
-        
+        saveToHistory(formulaInput.value);
         updateFormulaPreview();
+        formulaInput.focus();
+    }
+    
+    // Сохранение в историю
+    function saveToHistory(value) {
+        // Не сохранять повторяющиеся состояния
+        if (history[historyIndex] === value) return;
+        
+        history = history.slice(0, historyIndex + 1);
+        history.push(value);
+        historyIndex = history.length - 1;
+        
+        // Ограничить историю 100 записями
+        if (history.length > 100) {
+            history.shift();
+            historyIndex--;
+        }
     }
     
     // Обновление предпросмотра формулы
     function updateFormulaPreview() {
-        const input = document.getElementById('formula-input').value;
-        const preview = document.getElementById('formula-preview');
+        const input = formulaInput.value;
         
         try {
-            // Рендерим формулу с помощью KaTeX
-            katex.render(input, preview, {
+            katex.render(input, formulaPreview, {
                 throwOnError: false,
                 displayMode: false
             });
         } catch (e) {
-            preview.innerHTML = `<span style="color: #e74c3c;">Ошибка: ${e.message}</span>`;
+            formulaPreview.innerHTML = `<span style="color: #e74c3c;">Ошибка: ${e.message}</span>`;
         }
     }
     
@@ -689,7 +700,6 @@ document.addEventListener('DOMContentLoaded', () => {
     nextBtn.addEventListener('click', nextQuestion);
     restartBtn.addEventListener('click', restartTest);
     
-    // Обработчики для кнопок режимов
     easyModeBtn.addEventListener('click', () => {
         isHardMode = false;
         easyModeBtn.classList.add('active');
@@ -702,15 +712,36 @@ document.addEventListener('DOMContentLoaded', () => {
         easyModeBtn.classList.remove('active');
     });
     
-    // Обработчик для поля ввода
-    formulaInput.addEventListener('input', updateFormulaPreview);
+    formulaInput.addEventListener('input', () => {
+        saveToHistory(formulaInput.value);
+        updateFormulaPreview();
+    });
     
-    // Обработчик для кнопки подтверждения
+    // Обработка Ctrl+Z/Ctrl+Y
+    formulaInput.addEventListener('keydown', (e) => {
+        // Отмена (Ctrl+Z)
+        if ((e.ctrlKey || e.metaKey) && e.key === 'z') {
+            e.preventDefault();
+            if (historyIndex > 0) {
+                historyIndex--;
+                formulaInput.value = history[historyIndex];
+                updateFormulaPreview();
+            }
+        }
+        // Повтор (Ctrl+Y)
+        if ((e.ctrlKey || e.metaKey) && e.key === 'y') {
+            e.preventDefault();
+            if (historyIndex < history.length - 1) {
+                historyIndex++;
+                formulaInput.value = history[historyIndex];
+                updateFormulaPreview();
+            }
+        }
+    });
+    
     submitAnswerBtn.addEventListener('click', handleSubmitAnswer);
     
-    // Инициализация виртуальной клавиатуры
+    // Инициализация
     initVirtualKeyboard();
-
-    // Загружаем формулы при запуске
     loadFormulas();
 });
